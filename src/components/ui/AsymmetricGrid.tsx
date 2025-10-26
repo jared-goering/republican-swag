@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 interface AsymmetricGridProps {
   children: React.ReactNode
   className?: string
-  variant?: 'masonry' | 'featured' | 'showcase' | 'mixed'
+  variant?: 'masonry' | 'featured' | 'showcase' | 'mixed' | 'patriotic-masonry'
 }
 
 const AsymmetricGrid: React.FC<AsymmetricGridProps> = ({
@@ -25,7 +25,10 @@ const AsymmetricGrid: React.FC<AsymmetricGridProps> = ({
     showcase: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8',
     
     // Mixed sizes for varied content
-    mixed: 'grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-min'
+    mixed: 'grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-min',
+    
+    // Patriotic masonry with strategic positioning
+    'patriotic-masonry': 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-max'
   }
 
   return (
@@ -38,18 +41,44 @@ const AsymmetricGrid: React.FC<AsymmetricGridProps> = ({
 // Helper components for specific grid items
 const GridItem: React.FC<{
   children: React.ReactNode
-  span?: 'small' | 'medium' | 'large' | 'full'
+  span?: 'small' | 'medium' | 'large' | 'featured' | 'full'
   className?: string
 }> = ({ children, span = 'medium', className }) => {
   const spanClasses = {
-    small: 'md:col-span-1',
-    medium: 'md:col-span-2', 
-    large: 'md:col-span-3 lg:col-span-4',
-    full: 'md:col-span-full'
+    // Small cards - 1 column
+    small: 'md:col-span-1 lg:col-span-2',
+    // Medium cards - 1-2 columns  
+    medium: 'md:col-span-2 lg:col-span-2',
+    // Large cards - 2-3 columns
+    large: 'md:col-span-2 lg:col-span-3',
+    // Featured cards - takes prominent space
+    featured: 'md:col-span-4 lg:col-span-4 md:row-span-2',
+    // Full width
+    full: 'col-span-full'
   }
 
   return (
     <div className={cn(spanClasses[span], className)}>
+      {children}
+    </div>
+  )
+}
+
+// Patriotic Grid Item with enhanced positioning
+const PatrioticGridItem: React.FC<{
+  children: React.ReactNode
+  size?: 'small' | 'medium' | 'large' | 'featured'
+  className?: string
+}> = ({ children, size = 'medium', className }) => {
+  const sizeClasses = {
+    small: 'col-span-1',
+    medium: 'col-span-1', 
+    large: 'col-span-1 md:col-span-2',
+    featured: 'col-span-1 md:col-span-3 lg:col-span-2'
+  }
+
+  return (
+    <div className={cn(sizeClasses[size], 'hover-lift', className)}>
       {children}
     </div>
   )
@@ -66,4 +95,4 @@ const FeaturedItem: React.FC<{
   )
 }
 
-export { AsymmetricGrid, GridItem, FeaturedItem }
+export { AsymmetricGrid, GridItem, PatrioticGridItem, FeaturedItem }

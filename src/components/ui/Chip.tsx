@@ -29,3 +29,4 @@ const Chip: React.FC<ChipProps> = ({
 }
 
 export { Chip }
+

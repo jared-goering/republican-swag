@@ -12,19 +12,9 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold font-heading mb-4">GOP Merch Co.</h3>
-            <p className="text-primary-200 mb-4">
-              American-made merchandise for Republican campaigns. Printed in the Midwest with campaign-grade quality control.
-            </p>
+            <h3 className="text-xl font-bold font-heading mb-4">Republican Swag</h3>
             <p className="text-primary-200">
-              <strong>Contact:</strong>{' '}
-              <a 
-                href="mailto:orders@gopmerchco.com" 
-                className="text-white hover:text-accent transition-colors"
-                onClick={() => handleLinkClick('email')}
-              >
-                orders@gopmerchco.com
-              </a>
+              American-made merchandise for Republican campaigns. Printed in the Midwest with campaign-grade quality control.
             </p>
           </div>
 
@@ -113,7 +103,7 @@ const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="border-t border-primary-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-primary-200 text-sm">
-            © 2024 GOP Merch Co. All rights reserved. Made in the USA.
+            © 2024 Republican Swag. All rights reserved. Made in the USA.
           </p>
           <div className="mt-4 md:mt-0">
             <p className="text-primary-200 text-sm">

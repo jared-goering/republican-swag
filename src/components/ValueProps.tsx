@@ -1,32 +1,33 @@
 import React from 'react'
+import { Button } from '@/components/ui/Button'
 
 const ValueProps: React.FC = () => {
   const valueProps = [
     {
-      title: 'Ship Your Campaign Quickly',
-      subtitle: 'Fast Production',
-      description: 'From design to delivery, we move at campaign speed. Rush options available for last-minute events and urgent needs.',
+      title: 'Launch Fast, Look Professional',
+      subtitle: 'Campaign Operations',
+      description: 'We source U.S.-made blanks, print in the Midwest, and turn around production quickly — so you\'re never showing up to an event with last-minute, low-quality swag.',
       gradient: 'from-primary-600 via-primary-700 to-primary-800',
       theme: 'dark'
     },
     {
-      title: 'Built by the Streets, Made for You',
-      subtitle: 'American Manufacturing',
-      description: 'Every piece crafted in our Midwest facility with union-friendly practices and campaign-grade quality control.',
+      title: 'Built for Republican Campaigns',
+      subtitle: 'Communications Team',
+      description: 'We work exclusively with Republican candidates and committees. You don\'t have to explain timelines, pressure, or what\'s at stake. We\'re already operating on campaign speed.',
       gradient: 'from-neutral-700 via-neutral-800 to-neutral-900',
       theme: 'dark'
     },
     {
-      title: 'Elevate Your Street Game',
-      subtitle: 'Premium Quality',
-      description: 'From bold graphics to premium materials, everything you need to make your campaign stand out from the crowd.',
+      title: 'Fundraising-Ready Gear',
+      subtitle: 'Finance Team',
+      description: 'We help you choose pieces that actually convert — hats, tees, outerwear, donor bundles. The goal is not just "have merch," it\'s "turn enthusiasm into dollars."',
       gradient: 'from-accent-600 via-accent-700 to-accent-800',
       theme: 'dark'
     },
     {
-      title: 'FEC Compliant & Campaign Ready',
-      subtitle: 'Legal Expertise',
-      description: 'Expert guidance on disclaimer placement and sizing. We handle compliance so you can focus on winning.',
+      title: 'FEC Compliance Support',
+      subtitle: 'Legal & Compliance',
+      description: 'We apply required disclaimers, align pricing with contribution rules, and provide fulfillment documentation so your treasurer or compliance vendor has what they need.',
       gradient: 'from-gold-600 via-gold-700 to-gold-800',
       theme: 'dark'
     }
@@ -34,17 +35,23 @@ const ValueProps: React.FC = () => {
 
 
   return (
-    <section className="py-12 lg:py-16 bg-white" aria-labelledby="value-props-heading">
+    <section className="section-spacing bg-white" aria-labelledby="value-props-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-12">
+        {/* Enhanced Section Header */}
+        <div className="text-center component-spacing">
+          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-100 to-accent-100 rounded-full mb-6 border border-primary-200/50">
+            <span className="text-sm font-bold text-primary-700 uppercase tracking-wider">
+              ⚡ Campaign Solutions
+            </span>
+          </div>
+          
           <h2 
             id="value-props-heading"
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-primary mb-8 tracking-tight"
+            className="text-display font-heading text-primary element-spacing tracking-tight"
           >
             Everything Your Campaign Needs
           </h2>
-          <p className="text-xl lg:text-2xl text-ink max-w-4xl mx-auto font-light leading-relaxed">
+          <p className="text-body-large text-neutral-700 max-w-4xl mx-auto">
             From grassroots organizing to major events, we deliver the quality, speed, and compliance support 
             that Republican candidates need to win.
           </p>
@@ -161,19 +168,26 @@ const ValueProps: React.FC = () => {
 
         {/* Enhanced Bottom CTA */}
         <div className="text-center mt-20">
-          <div className="glass-patriotic rounded-3xl p-12 max-w-2xl mx-auto">
-            <p className="text-xl text-primary-700 mb-8 font-semibold">
+          <div className="glass-patriotic rounded-3xl p-12 max-w-2xl mx-auto border border-white/30">
+            <h3 className="text-heading-2 font-heading text-primary-800 mb-4">
               Ready to see what we can do for your campaign?
+            </h3>
+            <p className="text-body text-primary-700 mb-8">
+              Join hundreds of Republican campaigns who trust us with their merchandise needs.
             </p>
-            <button 
+            <Button 
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="inline-flex items-center px-10 py-4 bg-gradient-to-r from-accent-600 to-accent-700 text-white font-bold rounded-2xl hover:from-accent-700 hover:to-accent-800 transition-all duration-300 shadow-patriotic hover:shadow-2xl transform hover:-translate-y-1 uppercase tracking-wide"
+              variant="primary"
+              size="lg"
+              icon={
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              }
+              iconPosition="right"
             >
               Get Started Today
-              <svg className="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

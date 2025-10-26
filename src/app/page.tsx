@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import ValueProps from '@/components/ValueProps'
-import Categories from '@/components/Categories'
+import ProductShowcase from '@/components/ProductShowcase'
 import HowItWorks from '@/components/HowItWorks'
 import Compliance from '@/components/Compliance'
 import CTASection from '@/components/CTASection'
@@ -47,7 +47,7 @@ export default function Home() {
       <main id="main-content" className="pt-20">
         <Hero />
         <ValueProps />
-        <Categories />
+        <ProductShowcase />
         <HowItWorks />
         <Compliance />
         <CTASection />
@@ -65,14 +65,16 @@ export default function Home() {
 
       {/* Enhanced Floating CTA Button - Mobile Only */}
       {showFloatingCTA && (
-        <div className="fixed bottom-8 right-6 z-40 lg:hidden animate-scale-in">
+        <div className="fixed bottom-6 right-4 z-40 lg:hidden animate-scale-in">
           <Button
             onClick={handleFloatingCTAClick}
+            variant="cta"
             size="lg"
-            className="rounded-full shadow-patriotic hover:shadow-2xl transform hover:scale-110 transition-all duration-300 px-8 py-4 animate-pulse-glow"
+            className="rounded-full shadow-patriotic hover:shadow-2xl transform hover:scale-110 transition-all duration-300 min-h-[56px] min-w-[56px]"
+            icon={<MessageCircle className="w-6 h-6" />}
+            iconPosition="left"
           >
-            <MessageCircle className="w-6 h-6 mr-3" />
-            <span className="font-bold">Start Order</span>
+            <span className="font-bold whitespace-nowrap">Start Order</span>
           </Button>
         </div>
       )}

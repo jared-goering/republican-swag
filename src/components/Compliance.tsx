@@ -28,7 +28,7 @@ const Compliance: React.FC = () => {
 
   return (
     <section 
-      id="compliance" 
+      id="compliance"
       className="py-16 lg:py-24 bg-white" 
       aria-labelledby="compliance-heading"
     >
@@ -63,16 +63,15 @@ const Compliance: React.FC = () => {
         {/* Compliance Points Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {compliancePoints.map((point, index) => (
-            <div 
-              key={index}
-              className="bg-white rounded-2xl p-6 shadow-soft hover:shadow-soft-lg transition-all duration-300 border border-gray-100"
-            >
+            <div key={index} className="bg-white rounded-xl p-6 shadow-soft border border-gray-100">
               <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-primary-100 text-primary-700 rounded-xl flex items-center justify-center">
-                  {point.icon}
+                <div className="flex-shrink-0">
+                  <div className="w-12 h-12 bg-accent-100 text-accent-700 rounded-xl flex items-center justify-center">
+                    {point.icon}
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-bold font-heading text-primary mb-2">
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold text-primary mb-2">
                     {point.title}
                   </h3>
                   <p className="text-ink leading-relaxed">
@@ -84,65 +83,6 @@ const Compliance: React.FC = () => {
           ))}
         </div>
 
-        {/* Additional Information */}
-        <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-8">
-          <div className="flex items-start space-x-4">
-            <div className="flex-shrink-0">
-              <AlertTriangle className="w-8 h-8 text-yellow-600" />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold font-heading text-yellow-800 mb-4">
-                Important Compliance Notes
-              </h3>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <h4 className="font-semibold text-yellow-800 mb-2">What We Provide:</h4>
-                  <ul className="space-y-1 text-yellow-700">
-                    <li>• Operational guidance on FEC requirements</li>
-                    <li>• Proper disclaimer placement and sizing</li>
-                    <li>• Documentation of compliance decisions</li>
-                    <li>• Best practices for campaign merchandise</li>
-                  </ul>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-yellow-800 mb-2">What We Don't Provide:</h4>
-                  <ul className="space-y-1 text-yellow-700">
-                    <li>• Legal advice or legal opinions</li>
-                    <li>• Campaign finance law interpretation</li>
-                    <li>• Regulatory compliance guarantees</li>
-                    <li>• Legal representation or counsel</li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div className="mt-6 p-4 bg-yellow-100 rounded-lg">
-                <p className="text-sm text-yellow-800">
-                  <strong>Disclaimer:</strong> We provide operational guidance based on our experience with campaign merchandise, 
-                  but this is not legal advice. Always consult with your campaign attorney for legal guidance on 
-                  political advertising requirements and FEC compliance matters.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <h3 className="text-2xl font-bold font-heading text-primary mb-4">
-            Questions about compliance?
-          </h3>
-          <p className="text-lg text-ink mb-6">
-            Our team has worked with hundreds of Republican campaigns. We're here to help navigate the requirements.
-          </p>
-          <button 
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="inline-flex items-center px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-600 transition-colors duration-200 shadow-soft hover:shadow-soft-lg"
-          >
-            Ask About Compliance
-          </button>
-        </div>
       </div>
     </section>
   )

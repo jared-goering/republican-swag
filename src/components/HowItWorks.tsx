@@ -64,7 +64,7 @@ const HowItWorks: React.FC = () => {
             {steps.map((step, index) => (
               <div key={index} className="relative">
                 {/* Step Card */}
-                <Card variant="elevated" padding="lg" hover={true} className="relative z-10">
+                <Card variant="elevated" padding="lg" hover={true} className="relative z-10 h-full flex flex-col min-h-[400px]">
                   {/* Step Number */}
                   <div className="absolute -top-4 left-8">
                     <div className="w-8 h-8 bg-accent text-white rounded-full flex items-center justify-center font-bold text-sm">
@@ -78,22 +78,24 @@ const HowItWorks: React.FC = () => {
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-xl font-bold font-heading text-primary mb-4">
-                    {step.title}
-                  </h3>
-                  <p className="text-ink mb-6 leading-relaxed">
-                    {step.description}
-                  </p>
+                  <div className="flex-1 flex flex-col">
+                    <h3 className="text-xl font-bold font-heading text-primary mb-4">
+                      {step.title}
+                    </h3>
+                    <p className="text-ink mb-6 leading-relaxed flex-shrink-0">
+                      {step.description}
+                    </p>
 
-                  {/* Details List */}
-                  <ul className="space-y-2">
-                    {step.details.map((detail, detailIndex) => (
-                      <li key={detailIndex} className="flex items-start text-sm text-ink">
-                        <div className="w-1.5 h-1.5 bg-accent rounded-full mr-3 mt-2 flex-shrink-0"></div>
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
+                    {/* Details List */}
+                    <ul className="space-y-2 flex-1">
+                      {step.details.map((detail, detailIndex) => (
+                        <li key={detailIndex} className="flex items-start text-sm text-ink">
+                          <div className="w-1.5 h-1.5 bg-accent rounded-full mr-3 mt-2 flex-shrink-0"></div>
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </Card>
 
                 {/* Arrow - Only show between steps on desktop */}

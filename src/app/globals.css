@@ -1,21 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  /* Core Brand Colors */
-  --color-primary: #0B1F3B;
+  /* Enhanced Core Brand Colors with Better Contrast */
+  --color-primary: #0A1B35;
   --color-primary-50: #F1F4F9;
   --color-primary-100: #E6EBF4;
   --color-primary-200: #CCD7E9;
   --color-primary-300: #99AFD3;
   --color-primary-400: #6687BD;
   --color-primary-500: #335FA7;
-  --color-primary-600: #0B1F3B;
-  --color-primary-700: #091A32;
-  --color-primary-800: #071529;
-  --color-primary-900: #051020;
-  --color-primary-950: #030B17;
+  --color-primary-600: #0A1B35;
+  --color-primary-700: #081628;
+  --color-primary-800: #06121F;
+  --color-primary-900: #040E16;
+  --color-primary-950: #020A0D;
   
-  --color-accent: #B91C1C;
+  /* Enhanced Accent Colors with Better Contrast */
+  --color-accent: #C41E3A;
   --color-accent-50: #FEF2F2;
   --color-accent-100: #FEE2E2;
   --color-accent-200: #FECACA;
@@ -23,8 +24,8 @@
   --color-accent-400: #F87171;
   --color-accent-500: #EF4444;
   --color-accent-600: #DC2626;
-  --color-accent-700: #B91C1C;
-  --color-accent-800: #991B1B;
+  --color-accent-700: #C41E3A;
+  --color-accent-800: #A91B2E;
   --color-accent-900: #7F1D1D;
   --color-accent-950: #450A0A;
   
@@ -148,19 +149,33 @@
   --space-4xl: 6rem;
   --space-5xl: 8rem;
   
-  /* Modern Typography Scale */
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
-  --text-3xl: 1.875rem;
-  --text-4xl: 2.25rem;
-  --text-5xl: 3rem;
-  --text-6xl: 3.75rem;
-  --text-7xl: 4.5rem;
-  --text-8xl: 6rem;
+  /* Enhanced Typography Scale with Better Hierarchy */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  --text-4xl: 2.25rem;     /* 36px */
+  --text-5xl: 3rem;        /* 48px */
+  --text-6xl: 3.75rem;     /* 60px */
+  --text-7xl: 4.5rem;      /* 72px */
+  --text-8xl: 6rem;        /* 96px */
+  
+  /* Enhanced Line Heights for Better Readability */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+  
+  /* Consistent Spacing Scale */
+  --space-section: 5rem;    /* 80px - between major sections */
+  --space-component: 3rem;  /* 48px - between components */
+  --space-element: 1.5rem;  /* 24px - between elements */
+  --space-tight: 0.75rem;   /* 12px - tight spacing */
 }
 
 :root {
@@ -189,11 +204,47 @@ body {
   min-height: 100vh;
 }
 
-/* Focus styles for accessibility */
+/* Enhanced Focus Styles for Better Accessibility */
 *:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 3px solid var(--color-accent-600);
   outline-offset: 2px;
   border-radius: var(--radius-md);
+  box-shadow: 0 0 0 1px var(--color-white), 0 0 0 4px var(--color-accent-600);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-primary: #000000;
+    --color-accent: #FF0000;
+    --color-neutral-600: #000000;
+  }
+  
+  .text-gradient {
+    background: none;
+    color: var(--color-primary);
+    -webkit-text-fill-color: unset;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-pulse-glow,
+  .animate-float,
+  .animate-slide-up,
+  .animate-scale-in,
+  .animate-fade-in-up {
+    animation: none !important;
+  }
 }
 
 /* Utility classes for consistent styling */
@@ -250,12 +301,76 @@ body {
   object-position: center;
 }
 
-/* Modern text styles */
+/* Enhanced Typography Utilities */
 .text-gradient {
   background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.text-hero {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+.text-display {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+.text-heading-1 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: var(--leading-snug);
+  font-weight: 700;
+}
+
+.text-heading-2 {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  line-height: var(--leading-snug);
+  font-weight: 600;
+}
+
+.text-heading-3 {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  line-height: var(--leading-normal);
+  font-weight: 600;
+}
+
+.text-body-large {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  font-weight: 400;
+}
+
+.text-body {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  font-weight: 400;
+}
+
+.text-caption {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  font-weight: 500;
+}
+
+/* Consistent Section Spacing */
+.section-spacing {
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
+}
+
+.component-spacing {
+  margin-bottom: var(--space-component);
+}
+
+.element-spacing {
+  margin-bottom: var(--space-element);
 }
 
 /* Backdrop blur utilities */
@@ -468,4 +583,195 @@ body {
 .hover-glow:hover {
   box-shadow: var(--shadow-patriotic);
   transform: translateY(-2px);
+}
+
+/* Enhanced Patriotic Design Elements */
+.patriotic-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.patriotic-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    var(--color-accent) 0%, 
+    var(--color-white) 33%, 
+    var(--color-primary) 66%, 
+    var(--color-accent) 100%
+  );
+  z-index: 10;
+}
+
+.patriotic-badge {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: var(--shadow-patriotic);
+}
+
+.patriotic-overlay {
+  background: linear-gradient(135deg, 
+    rgba(185, 28, 28, 0.8) 0%,
+    rgba(11, 31, 59, 0.6) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+.patriotic-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.patriotic-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    var(--shadow-patriotic),
+    0 20px 40px rgba(185, 28, 28, 0.15),
+    0 10px 20px rgba(11, 31, 59, 0.1);
+}
+
+.patriotic-hover:hover::before {
+  height: 4px;
+  box-shadow: 0 2px 8px rgba(185, 28, 28, 0.3);
+}
+
+/* Premium Card Styles */
+.premium-card {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.premium-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    0 10px 20px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Enhanced Patriotic Star Patterns */
+.bg-patriotic-stars {
+  background-image: 
+    radial-gradient(circle at 20% 20%, var(--color-accent-100) 2px, transparent 2px),
+    radial-gradient(circle at 80% 80%, var(--color-primary-100) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 40% 60%, var(--color-gold-200) 1px, transparent 1px);
+  background-size: 60px 60px, 40px 40px, 80px 80px;
+  background-position: 0 0, 30px 30px, 20px 40px;
+}
+
+.bg-stars-dense {
+  background-image: 
+    radial-gradient(circle at 25% 25%, var(--color-accent-200) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 75% 75%, var(--color-primary-200) 1px, transparent 1px),
+    radial-gradient(circle at 50% 10%, var(--color-gold-300) 0.5px, transparent 0.5px),
+    radial-gradient(circle at 10% 90%, var(--color-accent-300) 0.8px, transparent 0.8px);
+  background-size: 40px 40px, 25px 25px, 60px 60px, 35px 35px;
+  background-position: 0 0, 20px 20px, 10px 30px, 30px 10px;
+}
+
+/* Patriotic Stripes Pattern */
+.bg-patriotic-stripes {
+  background: linear-gradient(
+    45deg,
+    var(--color-accent-100) 0%,
+    var(--color-accent-100) 10%,
+    transparent 10%,
+    transparent 20%,
+    var(--color-primary-100) 20%,
+    var(--color-primary-100) 30%,
+    transparent 30%,
+    transparent 40%,
+    var(--color-accent-100) 40%,
+    var(--color-accent-100) 50%,
+    transparent 50%,
+    transparent 60%,
+    var(--color-primary-100) 60%,
+    var(--color-primary-100) 70%,
+    transparent 70%,
+    transparent 80%,
+    var(--color-accent-100) 80%,
+    var(--color-accent-100) 90%,
+    transparent 90%
+  );
+  background-size: 20px 20px;
+}
+
+/* Eagle-inspired gradient */
+.bg-eagle-gradient {
+  background: radial-gradient(
+    ellipse at center,
+    var(--color-gold-200) 0%,
+    var(--color-primary-100) 30%,
+    var(--color-accent-100) 60%,
+    var(--color-neutral-100) 100%
+  );
+}
+
+/* Subtle Patriotic Gradient */
+.bg-patriotic-subtle {
+  background: linear-gradient(135deg, 
+    var(--color-neutral-50) 0%, 
+    var(--color-cream-50) 25%, 
+    var(--color-primary-50) 50%, 
+    var(--color-accent-50) 75%, 
+    var(--color-neutral-50) 100%
+  );
+}
+
+/* Enhanced Typography */
+.text-patriotic-gradient {
+  background: linear-gradient(135deg, 
+    var(--color-accent-600) 0%, 
+    var(--color-primary-600) 50%, 
+    var(--color-accent-600) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+}
+
+/* Masonry Animation Delays */
+.masonry-item-1 { animation-delay: 0.1s; }
+.masonry-item-2 { animation-delay: 0.2s; }
+.masonry-item-3 { animation-delay: 0.3s; }
+.masonry-item-4 { animation-delay: 0.4s; }
+.masonry-item-5 { animation-delay: 0.5s; }
+
+/* Enhanced Masonry Grid */
+.masonry-grid {
+  display: grid;
+  grid-template-rows: repeat(4, minmax(200px, auto));
+  grid-auto-rows: minmax(200px, auto);
+}
+
+@media (min-width: 768px) {
+  .masonry-grid {
+    grid-template-rows: repeat(3, minmax(250px, auto));
+    grid-auto-rows: minmax(250px, auto);
+  }
+}
+
+@media (min-width: 1024px) {
+  .masonry-grid {
+    grid-template-rows: repeat(2, minmax(300px, auto));
+    grid-auto-rows: minmax(300px, auto);
+  }
 }

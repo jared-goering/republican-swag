@@ -165,20 +165,6 @@ const Gallery: React.FC = () => {
             whether you're ordering 100 pieces or 10,000. Color consistency, proper sizing, and 
             attention to detail are guaranteed.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <div>
-              <div className="text-3xl font-bold text-accent mb-2">99.8%</div>
-              <div className="text-sm text-ink">Quality approval rate</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-accent mb-2">500+</div>
-              <div className="text-sm text-ink">Campaigns served</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-accent mb-2">48hr</div>
-              <div className="text-sm text-ink">Average proof time</div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -261,3 +247,4 @@ const Gallery: React.FC = () => {
 }
 
 export default Gallery
+

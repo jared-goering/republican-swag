@@ -38,62 +38,116 @@ const Hero: React.FC = () => {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
         <div className="max-w-6xl mx-auto">
-          {/* Logo with enhanced styling */}
-          <div className="flex justify-center mb-16 animate-scale-in">
-            <div className="relative">
-              <img 
-                src="/republican swag logo-02.png" 
-                alt="Republican Swag" 
-                className="h-24 sm:h-28 lg:h-36 w-auto drop-shadow-lg hover:drop-shadow-xl transition-all duration-300"
-              />
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 sm:w-36 sm:h-36 lg:w-44 lg:h-44 bg-gradient-to-br from-gold-400/15 via-accent-300/10 to-transparent rounded-full blur-xl -z-10"></div>
+          {/* Enhanced Logo with Patriotic Elements */}
+          <div className="flex justify-center mb-20 animate-scale-in">
+            <div className="relative group">
+              {/* Patriotic background elements */}
+              <div className="absolute -inset-8 bg-gradient-to-r from-accent-100/20 via-white/30 to-primary-100/20 rounded-full blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
+              <div className="absolute -inset-4 bg-gradient-to-br from-gold-200/30 to-transparent rounded-full blur-xl"></div>
+              
+              {/* Logo container with enhanced styling */}
+              <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-patriotic group-hover:shadow-2xl transition-all duration-500 border border-white/50">
+                <img 
+                  src="/republican swag logo-02.png" 
+                  alt="Republican Swag - American-made merchandise for Republican campaigns" 
+                  className="h-28 sm:h-32 lg:h-40 w-auto group-hover:scale-105 transition-transform duration-500"
+                />
+                
+                {/* Subtle patriotic accent */}
+                <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-accent-500 via-white to-primary-500 rounded-full"></div>
+              </div>
+              
+              {/* Floating stars decoration */}
+              <div className="absolute -top-2 -right-2 w-3 h-3 bg-accent-400 rounded-full animate-pulse opacity-60"></div>
+              <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-primary-400 rounded-full animate-pulse opacity-50" style={{ animationDelay: '1s' }}></div>
             </div>
           </div>
 
-          {/* Main Headline with improved hierarchy */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading text-primary mb-10 leading-[1.1] tracking-tight animate-slide-up">
-            <span className="block mb-2">American-made merch for</span>
-            <span className="bg-gradient-to-r from-accent-600 via-accent-500 to-accent-700 bg-clip-text text-transparent">
-              Republican campaigns
-            </span>
-          </h1>
+          {/* Enhanced Main Headline with Better Hierarchy */}
+          <div className="mb-16 animate-slide-up">
+            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-accent-100 to-primary-100 rounded-full mb-6 border border-accent-200/50">
+              <span className="text-sm font-bold text-primary-700 uppercase tracking-wider">
+                🇺🇸 Campaign-Grade Quality
+              </span>
+            </div>
+            
+            <h1 className="text-hero font-heading text-primary mb-6 tracking-tight">
+              <span className="block mb-2">American-made merch for</span>
+              <span className="bg-gradient-to-r from-accent-600 via-accent-500 to-accent-700 bg-clip-text text-transparent block">
+                winning campaigns
+              </span>
+            </h1>
 
-          {/* Enhanced Subheading */}
-          <p className="text-lg sm:text-xl lg:text-2xl text-neutral-600 mb-16 max-w-4xl mx-auto leading-relaxed font-light animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            <span className="font-semibold text-primary">U.S.-made blanks</span>, <span className="font-semibold text-primary">Midwest printing</span>, fast proofs, and <span className="font-semibold text-primary">FEC-savvy layouts</span>. 
-            <br className="hidden sm:block" />
-            Everything you need to gear up for the campaign trail.
-          </p>
-
-          {/* Enhanced Primary CTA */}
-          <div className="mb-24 animate-slide-up" style={{ animationDelay: '0.4s' }}>
-            <Button 
-              onClick={handleCTAClick}
-              size="lg"
-              className="text-xl px-16 py-6 shadow-patriotic hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 rounded-2xl font-bold uppercase tracking-wide hover-glow relative overflow-hidden group"
-            >
-              <span className="relative z-10">Start an Order</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-accent-600 to-accent-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </Button>
-            <p className="text-sm text-neutral-500 mt-4 font-medium">Free consultation • Fast turnaround • FEC compliant</p>
+            {/* Enhanced Value Proposition */}
+            <p className="text-body-large text-neutral-700 mb-8 max-w-4xl mx-auto animate-slide-up" style={{ animationDelay: '0.2s' }}>
+              <span className="font-bold text-primary-700">U.S.-made blanks</span> • <span className="font-bold text-primary-700">Midwest printing</span> • <span className="font-bold text-primary-700">Fast turnaround</span> • <span className="font-bold text-primary-700">FEC compliance</span>
+            </p>
+            
+            <p className="text-body text-neutral-600 max-w-3xl mx-auto animate-slide-up" style={{ animationDelay: '0.3s' }}>
+              From grassroots organizing to major rallies, we deliver professional merchandise that converts supporters into donors and volunteers into advocates.
+            </p>
           </div>
 
-          {/* Compact Trust Indicators */}
-          <div className="flex flex-wrap justify-center gap-6 mb-16 max-w-4xl mx-auto">
-            {trustChips.map((chip, index) => (
-              <div
-                key={index}
-                className="flex items-center space-x-3 glass-patriotic rounded-full px-6 py-3 hover-lift animate-fade-in-up group"
-                style={{ animationDelay: `${index * 100 + 600}ms` }}
+          {/* Enhanced Primary CTA with Urgency */}
+          <div className="mb-24 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+            <div className="flex flex-col items-center space-y-6">
+              <Button 
+                onClick={handleCTAClick}
+                variant="cta"
+                size="xl"
+                icon={
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                }
+                iconPosition="right"
               >
-                <div className="w-10 h-10 bg-gradient-to-br from-accent-500 to-accent-700 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  {React.cloneElement(chip.icon, { className: "w-5 h-5 text-white" })}
+                Start Your Order
+              </Button>
+              
+              <div className="text-center">
+                <p className="text-sm text-neutral-600 font-medium mb-2">
+                  ✓ Free consultation • ✓ 24-48hr quotes • ✓ FEC compliant layouts
+                </p>
+                <div className="inline-flex items-center px-3 py-1 bg-accent-50 border border-accent-200 rounded-full">
+                  <div className="w-2 h-2 bg-accent-500 rounded-full animate-pulse mr-2"></div>
+                  <span className="text-xs font-semibold text-accent-700 uppercase tracking-wide">
+                    Rush orders available for campaign deadlines
+                  </span>
                 </div>
-                <span className="text-sm font-semibold text-primary-800 whitespace-nowrap">
-                  {chip.text}
-                </span>
               </div>
-            ))}
+            </div>
+          </div>
+
+          {/* Enhanced Trust Indicators with Better Visual Hierarchy */}
+          <div className="mb-16">
+            <p className="text-caption text-neutral-600 text-center mb-8 uppercase tracking-wider font-semibold">
+              Trusted by Republican campaigns nationwide
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
+              {trustChips.map((chip, index) => (
+                <div
+                  key={index}
+                  className="flex items-center space-x-3 glass-patriotic rounded-2xl px-6 py-4 hover-lift animate-fade-in-up group border border-white/30"
+                  style={{ animationDelay: `${index * 100 + 600}ms` }}
+                >
+                  <div className="w-12 h-12 bg-gradient-to-br from-accent-500 to-accent-700 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    {React.cloneElement(chip.icon, { className: "w-6 h-6 text-white" })}
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-sm font-bold text-primary-800 whitespace-nowrap">
+                      {chip.text}
+                    </span>
+                    <span className="text-xs text-primary-600 opacity-80">
+                      {index === 0 && "Quality materials"}
+                      {index === 1 && "Local production"}
+                      {index === 2 && "Professional standards"}
+                      {index === 3 && "Legal compliance"}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
         </div>
