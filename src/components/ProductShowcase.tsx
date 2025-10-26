@@ -134,7 +134,7 @@ const ProductShowcase: React.FC = () => {
             >
               {category.label}
               <Badge 
-                variant={activeCategory === category.id ? 'light' : 'secondary'} 
+                variant={activeCategory === category.id ? 'accent' : 'outline'} 
                 className="ml-2"
               >
                 {category.count}
