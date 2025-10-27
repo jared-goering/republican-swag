@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
+import { Resend } from 'resend'
+
+// Initialize Resend
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 // Validation schema matching the frontend form
 const contactFormSchema = z.object({
@@ -42,27 +46,36 @@ export async function POST(request: NextRequest) {
     console.log('Consent given:', validatedData.consent)
     console.log('==========================================')
     
-    // TODO: Wire up to email service (Resend, EmailJS, SendGrid, etc.)
-    // Example with Resend:
-    /*
-    import { Resend } from 'resend'
-    const resend = new Resend(process.env.RESEND_API_KEY)
-    
-    await resend.emails.send({
-      from: 'orders@gopmerchco.com',
-      to: ['sales@gopmerchco.com'],
-      subject: `New Order Request: ${validatedData.committee}`,
-      html: generateEmailTemplate(validatedData),
-    })
-    
-    // Send confirmation email to customer
-    await resend.emails.send({
-      from: 'orders@gopmerchco.com',
-      to: [validatedData.email],
-      subject: 'Your GOP Merch Co. Request Received',
-      html: generateConfirmationTemplate(validatedData),
-    })
-    */
+    // Send email notification to business owner
+    try {
+      console.log('📧 Attempting to send emails...')
+      console.log('API Key exists:', !!process.env.RESEND_API_KEY)
+      console.log('From email:', process.env.FROM_EMAIL || 'orders@republicanswag.com')
+      console.log('To email:', process.env.NOTIFICATION_EMAIL || 'jared@homeplaceapparel.com')
+      
+      const businessEmail = await resend.emails.send({
+        from: 'onboarding@resend.dev', // Use Resend's verified domain for testing
+        to: [process.env.NOTIFICATION_EMAIL || 'jared@homeplaceapparel.com'],
+        subject: `🎯 New Campaign Order Request: ${validatedData.committee}`,
+        html: generateEmailTemplate(validatedData),
+      })
+      console.log('✅ Business notification response:', JSON.stringify(businessEmail, null, 2))
+      
+      // Send confirmation email to customer
+      const customerEmail = await resend.emails.send({
+        from: 'onboarding@resend.dev', // Use Resend's verified domain for testing
+        to: [validatedData.email],
+        subject: 'Your Republican Swag Request Received',
+        html: generateConfirmationTemplate(validatedData),
+      })
+      console.log('✅ Customer confirmation response:', JSON.stringify(customerEmail, null, 2))
+      
+      console.log('✅ All emails sent successfully')
+    } catch (emailError) {
+      console.error('❌ Email sending failed:', emailError)
+      console.error('Error details:', JSON.stringify(emailError, null, 2))
+      // Don't fail the entire request if email fails
+    }
     
     // TODO: Wire up to CRM/Database (Airtable, Notion, etc.)
     // Example with Airtable:
@@ -156,38 +169,87 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Helper function to generate email template (for future use)
+// Helper function to generate email template for business owner
 function generateEmailTemplate(data: any) {
   return `
-    <h2>New Campaign Merchandise Request</h2>
-    <p><strong>Campaign:</strong> ${data.committee}</p>
-    <p><strong>Contact:</strong> ${data.fullName}</p>
-    <p><strong>Email:</strong> ${data.email}</p>
-    <p><strong>Phone:</strong> ${data.phone || 'Not provided'}</p>
-    <p><strong>Office Level:</strong> ${data.officeLevel}</p>
-    <p><strong>State:</strong> ${data.state}</p>
-    <p><strong>Products:</strong> ${data.products.join(', ')}</p>
-    <p><strong>Quantities:</strong> ${data.quantities}</p>
-    <p><strong>Timeline:</strong> ${data.timeline}</p>
-    <p><strong>Paid for by:</strong> ${data.paidForBy}</p>
-    ${data.notes ? `<p><strong>Notes:</strong> ${data.notes}</p>` : ''}
-    <p><em>Submitted: ${new Date().toLocaleString()}</em></p>
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <title>New Campaign Order Request</title>
+      <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; }
+        .header { background: #dc2626; color: white; padding: 20px; border-radius: 8px 8px 0 0; }
+        .content { background: #f9fafb; padding: 20px; border-radius: 0 0 8px 8px; }
+        .field { margin-bottom: 12px; }
+        .label { font-weight: bold; color: #374151; }
+        .products { background: white; padding: 15px; border-radius: 6px; margin: 10px 0; }
+      </style>
+    </head>
+    <body>
+      <div class="header">
+        <h2>🎯 New Campaign Order Request</h2>
+        <p>You have received a new merchandise request!</p>
+      </div>
+      <div class="content">
+        <div class="field"><span class="label">Campaign:</span> ${data.committee}</div>
+        <div class="field"><span class="label">Contact:</span> ${data.fullName}</div>
+        <div class="field"><span class="label">Email:</span> <a href="mailto:${data.email}">${data.email}</a></div>
+        <div class="field"><span class="label">Phone:</span> ${data.phone || 'Not provided'}</div>
+        <div class="field"><span class="label">Office Level:</span> ${data.officeLevel} (${data.state})</div>
+        <div class="products">
+          <div class="field"><span class="label">Products:</span> ${data.products.join(', ')}</div>
+          <div class="field"><span class="label">Quantities:</span> ${data.quantities}</div>
+          <div class="field"><span class="label">Timeline:</span> ${data.timeline}</div>
+          <div class="field"><span class="label">Paid for by:</span> ${data.paidForBy}</div>
+          ${data.notes ? `<div class="field"><span class="label">Notes:</span> ${data.notes}</div>` : ''}
+        </div>
+        <div class="field"><em>Submitted: ${new Date().toLocaleString()}</em></div>
+      </div>
+    </body>
+    </html>
   `
 }
 
-// Helper function to generate confirmation email template (for future use)
+// Helper function to generate confirmation email for customer
 function generateConfirmationTemplate(data: any) {
   return `
-    <h2>Thank you for your request!</h2>
-    <p>Hi ${data.fullName},</p>
-    <p>We've received your merchandise request for <strong>${data.committee}</strong> and will get back to you within 24-48 hours with a custom quote.</p>
-    <h3>Your Request Summary:</h3>
-    <ul>
-      <li><strong>Products:</strong> ${data.products.join(', ')}</li>
-      <li><strong>Quantities:</strong> ${data.quantities}</li>
-      <li><strong>Timeline:</strong> ${data.timeline}</li>
-    </ul>
-    <p>If you have any immediate questions, feel free to reply to this email or call us at (555) 123-4567.</p>
-    <p>Best regards,<br>The GOP Merch Co. Team</p>
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Your Request Received</title>
+      <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; }
+        .header { background: #dc2626; color: white; padding: 20px; border-radius: 8px 8px 0 0; }
+        .content { background: #f9fafb; padding: 20px; border-radius: 0 0 8px 8px; }
+        .summary { background: white; padding: 15px; border-radius: 6px; margin: 15px 0; }
+      </style>
+    </head>
+    <body>
+      <div class="header">
+        <h2>✅ Request Received!</h2>
+        <p>Thank you for your campaign merchandise request</p>
+      </div>
+      <div class="content">
+        <p>Hi ${data.fullName},</p>
+        <p>We've received your merchandise request for <strong>${data.committee}</strong> and will get back to you within 24-48 hours with a custom quote.</p>
+        
+        <div class="summary">
+          <h3>Request Summary:</h3>
+          <p><strong>Products:</strong> ${data.products.join(', ')}</p>
+          <p><strong>Quantities:</strong> ${data.quantities}</p>
+          <p><strong>Timeline:</strong> ${data.timeline}</p>
+        </div>
+        
+        <p>Our team will review your requirements and contact you at <strong>${data.email}</strong>${data.phone ? ` or <strong>${data.phone}</strong>` : ''} with pricing and next steps.</p>
+        
+        <p>If you have any immediate questions, feel free to reply to this email.</p>
+        
+        <p>Best regards,<br>
+        Republican Swag Team</p>
+      </div>
+    </body>
+    </html>
   `
 }
