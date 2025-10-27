@@ -7,8 +7,29 @@ export function cn(...inputs: ClassValue[]) {
 
 // Analytics tracking functions
 export const trackEvent = (eventName: string, properties?: Record<string, any>) => {
-  // TODO: Wire up to analytics service (Google Analytics, Mixpanel, etc.)
-  console.log('Event tracked:', eventName, properties)
+  // Log to console for debugging
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Event tracked:', eventName, properties)
+  }
+  
+  // Google Analytics 4 (gtag) integration
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', eventName, {
+      ...properties,
+      // Add default properties
+      page_title: document.title,
+      page_location: window.location.href,
+    })
+  }
+  
+  // Alternative: Custom analytics endpoint
+  // if (typeof window !== 'undefined') {
+  //   fetch('/api/analytics', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ event: eventName, properties })
+  //   }).catch(console.error)
+  // }
 }
 
 // Form validation helpers

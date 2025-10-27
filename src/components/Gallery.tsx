@@ -7,60 +7,46 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 const Gallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
 
-  // Placeholder gallery items - in a real implementation, these would be actual campaign merchandise photos
+  // Gallery items featuring actual campaign merchandise photos
   const galleryItems = [
     {
       id: 1,
-      src: '/api/placeholder/400/300',
+      src: '/images/products/tshirt-preview.jpg',
       alt: 'Republican campaign t-shirts with consistent branding',
       caption: 'Consistent branding across multiple t-shirt designs for a statewide race',
       category: 'Apparel'
     },
     {
       id: 2,
-      src: '/api/placeholder/400/300',
+      src: '/images/products/yard-sign-preview.jpg',
       alt: 'Professional yard signs with FEC compliant disclaimers',
       caption: 'FEC-compliant yard signs with proper disclaimer placement',
       category: 'Signage'
     },
     {
       id: 3,
-      src: '/api/placeholder/400/300',
+      src: '/images/products/banner-preview.jpg',
       alt: 'Campaign rally banners and flags',
       caption: 'Large format banners and flags for campaign rallies',
       category: 'Rally Materials'
     },
     {
       id: 4,
-      src: '/api/placeholder/400/300',
+      src: '/images/products/palm-card-preview.jpg',
       alt: 'Professional campaign brochures and palm cards',
       caption: 'High-quality brochures and palm cards for door-to-door canvassing',
       category: 'Print Materials'
     },
     {
       id: 5,
-      src: '/api/placeholder/400/300',
-      alt: 'Custom embroidered polo shirts for campaign staff',
-      caption: 'Premium embroidered polos for campaign staff and volunteers',
+      src: '/images/products/hat-preview.png',
+      alt: 'Custom embroidered campaign hats',
+      caption: 'Premium embroidered hats for campaign staff and supporters',
       category: 'Staff Apparel'
     },
     {
       id: 6,
-      src: '/api/placeholder/400/300',
-      alt: 'Vehicle magnets and bumper stickers',
-      caption: 'Durable vehicle magnets and bumper stickers for mobile advertising',
-      category: 'Vehicle Graphics'
-    },
-    {
-      id: 7,
-      src: '/api/placeholder/400/300',
-      alt: 'Campaign buttons and pins collection',
-      caption: 'Variety of campaign buttons and pins for events and giveaways',
-      category: 'Accessories'
-    },
-    {
-      id: 8,
-      src: '/api/placeholder/400/300',
+      src: '/images/products/donor-gift-preview.jpg',
       alt: 'Premium donor gifts and VIP merchandise',
       caption: 'Exclusive merchandise for major donors and VIP supporters',
       category: 'VIP Items'

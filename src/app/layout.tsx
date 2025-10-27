@@ -31,28 +31,6 @@ export const metadata: Metadata = {
       { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://gopmerchco.com",
-    siteName: "GOP Merch Co.",
-    title: "American-Made GOP Campaign Merch | Midwest Printing",
-    description: "U.S.-made blanks, Midwest printing, FEC-savvy proofs. Campaign-fast merch for Republican candidates.",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "GOP Merch Co. - American-Made Campaign Merchandise",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "American-Made GOP Campaign Merch | Midwest Printing",
-    description: "U.S.-made blanks, Midwest printing, FEC-savvy proofs. Campaign-fast merch for Republican candidates.",
-    images: ["/og-image.jpg"],
-  },
   verification: {
     // Add verification codes when available
     // google: "your-google-verification-code",
