@@ -22,6 +22,15 @@ export const metadata: Metadata = {
   creator: "GOP Merch Co.",
   publisher: "GOP Merch Co.",
   robots: "index, follow",
+  icons: {
+    icon: [
+      { url: '/favicon.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -59,6 +68,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Favicon Links */}
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
+        
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"

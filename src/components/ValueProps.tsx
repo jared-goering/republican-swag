@@ -62,24 +62,24 @@ const ValueProps: React.FC = () => {
           {/* Top Row - Two Compact Cards */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
             <div
-              className={`relative overflow-hidden rounded-3xl aspect-[5/3] min-h-[280px] bg-gradient-to-br ${valueProps[0].gradient} group cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover-lift`}
+              className={`relative overflow-hidden rounded-3xl lg:aspect-[5/3] min-h-[320px] lg:min-h-[280px] bg-gradient-to-br ${valueProps[0].gradient} group cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover-lift`}
             >
               {/* Background pattern overlay */}
               <div className="absolute inset-0 bg-subtle-pattern opacity-10"></div>
               
-              <div className="relative h-full flex flex-col justify-center p-6 lg:p-8 text-white">
-                <div className="space-y-3">
+              <div className="relative h-full flex flex-col justify-center p-6 sm:p-8 lg:p-8 text-white">
+                <div className="space-y-4 sm:space-y-3">
                   <div className="inline-flex items-center px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full">
                     <p className="text-xs font-bold uppercase tracking-wider text-white">
                       {valueProps[0].subtitle}
                     </p>
                   </div>
                   
-                  <h3 className="text-2xl lg:text-3xl font-bold leading-tight text-white font-heading">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight text-white font-heading">
                     {valueProps[0].title}
                   </h3>
                   
-                  <p className="text-base lg:text-lg leading-relaxed text-white/95">
+                  <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-white/95">
                     {valueProps[0].description}
                   </p>
                 </div>
@@ -87,24 +87,24 @@ const ValueProps: React.FC = () => {
             </div>
 
             <div
-              className={`relative overflow-hidden rounded-3xl aspect-[5/3] min-h-[280px] bg-gradient-to-br ${valueProps[1].gradient} group cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover-lift`}
+              className={`relative overflow-hidden rounded-3xl lg:aspect-[5/3] min-h-[320px] lg:min-h-[280px] bg-gradient-to-br ${valueProps[1].gradient} group cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover-lift`}
             >
               {/* Background pattern overlay */}
               <div className="absolute inset-0 bg-subtle-pattern opacity-10"></div>
               
-              <div className="relative h-full flex flex-col justify-center p-6 lg:p-8 text-white">
-                <div className="space-y-3">
+              <div className="relative h-full flex flex-col justify-center p-6 sm:p-8 lg:p-8 text-white">
+                <div className="space-y-4 sm:space-y-3">
                   <div className="inline-flex items-center px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full">
                     <p className="text-xs font-bold uppercase tracking-wider text-white">
                       {valueProps[1].subtitle}
                     </p>
                   </div>
                   
-                  <h3 className="text-2xl lg:text-3xl font-bold leading-tight text-white font-heading">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight text-white font-heading">
                     {valueProps[1].title}
                   </h3>
                   
-                  <p className="text-base lg:text-lg leading-relaxed text-white/95">
+                  <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-white/95">
                     {valueProps[1].description}
                   </p>
                 </div>
@@ -115,24 +115,24 @@ const ValueProps: React.FC = () => {
           {/* Bottom Row - Two More Compact Cards */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div
-              className={`relative overflow-hidden rounded-3xl aspect-[5/3] min-h-[280px] bg-gradient-to-br ${valueProps[2].gradient} group cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover-lift`}
+              className={`relative overflow-hidden rounded-3xl lg:aspect-[5/3] min-h-[320px] lg:min-h-[280px] bg-gradient-to-br ${valueProps[2].gradient} group cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover-lift`}
             >
               {/* Background pattern overlay */}
               <div className="absolute inset-0 bg-subtle-pattern opacity-10"></div>
               
-              <div className="relative h-full flex flex-col justify-center p-6 lg:p-8 text-white">
-                <div className="space-y-3">
+              <div className="relative h-full flex flex-col justify-center p-6 sm:p-8 lg:p-8 text-white">
+                <div className="space-y-4 sm:space-y-3">
                   <div className="inline-flex items-center px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full">
                     <p className="text-xs font-bold uppercase tracking-wider text-white">
                       {valueProps[2].subtitle}
                     </p>
                   </div>
                   
-                  <h3 className="text-2xl lg:text-3xl font-bold leading-tight text-white font-heading">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight text-white font-heading">
                     {valueProps[2].title}
                   </h3>
                   
-                  <p className="text-base lg:text-lg leading-relaxed text-white/95">
+                  <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-white/95">
                     {valueProps[2].description}
                   </p>
                 </div>
@@ -140,24 +140,24 @@ const ValueProps: React.FC = () => {
             </div>
 
             <div
-              className={`relative overflow-hidden rounded-3xl aspect-[5/3] min-h-[280px] bg-gradient-to-br ${valueProps[3].gradient} group cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover-lift`}
+              className={`relative overflow-hidden rounded-3xl lg:aspect-[5/3] min-h-[320px] lg:min-h-[280px] bg-gradient-to-br ${valueProps[3].gradient} group cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover-lift`}
             >
               {/* Background pattern overlay */}
               <div className="absolute inset-0 bg-subtle-pattern opacity-10"></div>
               
-              <div className="relative h-full flex flex-col justify-center p-6 lg:p-8 text-white">
-                <div className="space-y-3">
+              <div className="relative h-full flex flex-col justify-center p-6 sm:p-8 lg:p-8 text-white">
+                <div className="space-y-4 sm:space-y-3">
                   <div className="inline-flex items-center px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full">
                     <p className="text-xs font-bold uppercase tracking-wider text-white">
                       {valueProps[3].subtitle}
                     </p>
                   </div>
                   
-                  <h3 className="text-2xl lg:text-3xl font-bold leading-tight text-white font-heading">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight text-white font-heading">
                     {valueProps[3].title}
                   </h3>
                   
-                  <p className="text-base lg:text-lg leading-relaxed text-white/95">
+                  <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-white/95">
                     {valueProps[3].description}
                   </p>
                 </div>
