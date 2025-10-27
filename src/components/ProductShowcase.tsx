@@ -1,20 +1,12 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
+import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { scrollToElement, trackEvent } from '@/lib/utils'
 
 const ProductShowcase: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState('all')
-
-  const categories = [
-    { id: 'all', label: 'All Products', count: 12 },
-    { id: 'apparel', label: 'Apparel', count: 5 },
-    { id: 'signage', label: 'Signs & Banners', count: 3 },
-    { id: 'handouts', label: 'Handouts', count: 2 },
-    { id: 'premium', label: 'Premium Items', count: 2 }
-  ]
 
   const products = [
     {
@@ -41,7 +33,7 @@ const ProductShowcase: React.FC = () => {
       id: 3,
       name: 'Campaign Hats',
       category: 'apparel',
-      image: '/images/products/hat-preview.jpg',
+      image: '/images/products/hat-preview.png',
       description: 'Structured caps with embroidered logos',
       features: ['Adjustable fit', 'Premium embroidery', 'Multiple styles'],
       price: '',
@@ -79,15 +71,6 @@ const ProductShowcase: React.FC = () => {
     }
   ]
 
-  const filteredProducts = activeCategory === 'all' 
-    ? products 
-    : products.filter(product => product.category === activeCategory)
-
-  const handleCategoryChange = (categoryId: string) => {
-    setActiveCategory(categoryId)
-    trackEvent('product_category_filter', { category: categoryId })
-  }
-
   const handleProductClick = (productId: number) => {
     trackEvent('product_showcase_click', { product_id: productId })
     scrollToElement('contact')
@@ -120,32 +103,9 @@ const ProductShowcase: React.FC = () => {
           </p>
         </div>
 
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 component-spacing">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => handleCategoryChange(category.id)}
-              className={`inline-flex items-center px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 ${
-                activeCategory === category.id
-                  ? 'bg-gradient-to-r from-accent-600 to-accent-700 text-white shadow-patriotic transform scale-105'
-                  : 'bg-white text-primary-700 border-2 border-primary-200 hover:border-accent-300 hover:text-accent-700 hover:scale-105'
-              }`}
-            >
-              {category.label}
-              <Badge 
-                variant={activeCategory === category.id ? 'accent' : 'outline'} 
-                className="ml-2"
-              >
-                {category.count}
-              </Badge>
-            </button>
-          ))}
-        </div>
-
         {/* Product Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProducts.map((product, index) => (
+          {products.map((product, index) => (
             <div
               key={product.id}
               className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-white/50 hover:border-accent-200 hover:-translate-y-2"
@@ -160,21 +120,15 @@ const ProductShowcase: React.FC = () => {
                 </div>
               )}
 
-              {/* Product Image Placeholder */}
-              <div className="aspect-[4/3] bg-gradient-to-br from-primary-100 to-accent-100 relative overflow-hidden">
-                <div className="absolute inset-0 bg-patriotic-stars opacity-20"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-20 h-20 bg-gradient-to-br from-accent-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform duration-300">
-                      <span className="text-2xl font-bold text-white">
-                        {product.name.charAt(0)}
-                      </span>
-                    </div>
-                    <p className="text-sm font-semibold text-primary-700">
-                      Professional Preview
-                    </p>
-                  </div>
-                </div>
+              {/* Product Image */}
+              <div className="aspect-[4/3] relative overflow-hidden">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
                 
                 {/* Hover overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
